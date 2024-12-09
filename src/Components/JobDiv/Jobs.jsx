@@ -1,8 +1,16 @@
 import React from 'react'
 import {BiTimeFive} from 'react-icons/bi'
 import logo from '../../Assets/logo.png'
+import ea from '../../Assets/ea.png'
+import apple from '../../Assets/apple.png'
+import asus from '../../Assets/asus.png'
+import samsung from '../../Assets/samsung.png'
+import acer from '../../Assets/acer.png'
+import embassy from '../../Assets/embassy.png'
+import axor from '../../Assets/axor.png'
 
 const Data = [
+
   {
     id:1,
     image:logo,
@@ -15,7 +23,7 @@ const Data = [
 
   {
     id:2,
-    image:logo,
+    image:axor,
     title:'Software Eng',
     time:'10Hrs',
     location:'Nepal',
@@ -25,7 +33,7 @@ const Data = [
 
   {
     id:3,
-    image:logo,
+    image:samsung,
     title:'UI/UX Designer',
     time:'5Hrs',
     location:'India',
@@ -35,7 +43,7 @@ const Data = [
 
   {
     id:4,
-    image:logo,
+    image:asus,
     title:'Product Designer',
     time:'Now',
     location:'USA',
@@ -45,7 +53,7 @@ const Data = [
 
   {
     id:5,
-    image:logo,
+    image:embassy,
     title:'Data Analyst',
     time:'6Hrs',
     location:'Australia',
@@ -55,7 +63,7 @@ const Data = [
 
   {
     id:6,
-    image:logo,
+    image:acer,
     title:'Data Scientist',
     time:'8Hrs',
     location:'China',
@@ -65,17 +73,17 @@ const Data = [
   
   {
     id:7,
-    image:logo,
+    image:apple,
     title:'Mobile App Developer',
     time:'15Hrs',
     location:'Russia',
     desc: 'Lorem ipsum dolor m, odio autem rem eos, iusto doloremque ut sed temporibus quidusdam enim et',
-    company:'Godrej'
+    company:'Apple'
   },
 
   {
     id:8,
-    image:logo,
+    image:ea,
     title:'Researcher',
     time:'2 Days',
     location:'Norway',
@@ -94,7 +102,7 @@ const Jobs = () => {
         {
           Data.map(({id,image,title,time,location,desc,company}) =>{
               return(
-          <div key={id} className='group group/item singleJob w-[250px] p-[20px] bg-whitw rounded
+          <div key={id} className='group group/item singleJob w-[250px] p-[20px] bg-white rounded
           [10px] hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg'>
             <span className='flex justify-between items-center gap-4'> 
               <h1 className='text-[16px] font-semibold text-textColor
