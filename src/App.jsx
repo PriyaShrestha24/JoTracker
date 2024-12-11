@@ -7,6 +7,8 @@ import Jobs from './Components/JobDiv/Jobs';
 import Value from './Components/ValueDiv/Value';
 import Login from './Components/LoginSignup/Login';
 import Signup from './Components/LoginSignup/Signup';
+import AboutUs from './Components/AboutDiv/AboutUs';
+import Blog from './Components/BlogDiv/Blog';
 
 const Layout = ({ children }) => {
   return (
@@ -63,6 +65,22 @@ const App = () => {
           element={
             <Layout>
               <Signup />
+            </Layout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <Layout>
+              <AboutUs />
+            </Layout>
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <Layout>
+              <Blog />
             </Layout>
           }
         />
