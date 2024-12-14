@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -62,12 +62,12 @@ const Login = () => {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-3 rounded-lg font-medium text-sm hover:bg-blue-600 transition"
-          >
-            Login
-          </button>
+            <Link
+              to="/"
+              className="w-full bg-blue-500 text-white p-3 rounded-lg font-medium text-sm hover:bg-blue-600 transition block text-center"
+            >
+              Login
+            </Link>
           <p className="text-center text-gray-600 text-sm">
             Don’t have an account?{' '}
             <span

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -83,12 +83,12 @@ const Signup = () => {
               placeholder="Confirm Password"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-lg font-medium text-sm hover:bg-blue-600 transition"
+          <Link
+            to="/"
+           className="w-full bg-blue-500 text-white p-3 rounded-lg font-medium text-sm hover:bg-blue-600 transition block text-center"
           >
-            Sign Up
-          </button>
+           Signup
+          </Link>
           <p className="text-center text-gray-600 text-sm">
             Already have an account?{' '}
             <span

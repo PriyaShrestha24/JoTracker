@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/FooterDiv/Footer';
-import Search from './Components/SearchDiv/Search';
+//import Search from './Components/SearchDiv/Search';
 import Jobs from './Components/JobDiv/Jobs';
 import Value from './Components/ValueDiv/Value';
 import Login from './Components/LoginSignup/Login';
 import Signup from './Components/LoginSignup/Signup';
 import AboutUs from './Components/AboutDiv/AboutUs';
 import Blog from './Components/BlogDiv/Blog';
+import Companies from './Components/CompanyDiv/Companies'
 
 const Layout = ({ children }) => {
   return (
@@ -21,6 +22,34 @@ const Layout = ({ children }) => {
 };
 
 const App = () => {
+  const [companies, setCompanies] = useState([
+    { id: 1, name: 'Huawei', logo: 'path/to/logo' },
+    { id: 2, name: 'Samsung', logo: 'path/to/logo' },
+  ]);
+
+  const [jobs, setJobs] = useState([
+    {
+      id: 1,
+      title: 'Web Developer',
+      company: 'Huawei',
+      location: 'Canada',
+      time: 'Now',
+      desc: 'Job description here',
+    },
+  ]);
+
+  const [vacancies, setVacancies] = useState({});
+
+  const addVacancy = (companyId, title, description, logo) => {
+    const companyVacancies = vacancies[companyId] || [];
+    setVacancies({
+      ...vacancies,
+      [companyId]: [
+        ...companyVacancies,
+        { id: companyVacancies.length + 1, title, description, logo },
+      ],
+    });
+  };
   return (
     <Router>
       <Routes>
@@ -29,7 +58,7 @@ const App = () => {
           path="/"
           element={
             <Layout>
-              <Search />
+              {/* <Search /> */}
               <Jobs />
               <Value />
             </Layout>
@@ -40,7 +69,7 @@ const App = () => {
           path="/jobs"
           element={
             <Layout>
-              <Jobs />
+              <Jobs jobs={jobs} />
             </Layout>
           }
         />
@@ -81,6 +110,14 @@ const App = () => {
           element={
             <Layout>
               <Blog />
+            </Layout>
+          }
+        />
+        <Route
+          path="/companies"
+          element={
+            <Layout>
+              <Companies companies={companies} setCompanies={setCompanies}  />
             </Layout>
           }
         />
