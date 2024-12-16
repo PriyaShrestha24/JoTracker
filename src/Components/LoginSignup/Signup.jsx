@@ -1,48 +1,62 @@
 import React, { useState } from 'react';
-import { useNavigate,Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSignup = (e) => {
-    e.preventDefault();
+  const handleSignup = () => {
     const { fullName, email, password, confirmPassword } = formData;
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Strong password regex
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     // Validation logic
     if (!fullName || !email || !password || !confirmPassword) {
-      setError('All fields are required.');
-      return;
+      toast.error('All fields are required.');
+      return false;
+    }
+    if (!emailRegex.test(email)) {
+      toast.error('Please enter a valid email address.');
+      return false;
+    }
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        'Password must be at least 8 characters long, include one letter, one number, and one special character.'
+      );
+      return false;
     }
     if (password !== confirmPassword) {
-      setError('Passwords do not match.');
-      return;
+      toast.error('Passwords do not match.');
+      return false;
     }
 
-    setError(''); // Clear error message
-    alert('Signup successful!');
-    navigate('/login'); // Redirect to login page
+    toast.success('Signup successful!');
+    return true; // Allow navigation
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 px-4">
+      <ToastContainer />
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-xs w-full">
         <h2 className="text-2xl font-bold mb-4 text-center text-blue-600">
           Create Account
         </h2>
-        {error && <div className="bg-red-100 text-red-500 p-2 mb-3 rounded">{error}</div>}
-        <form onSubmit={handleSignup} className="space-y-4">
+        <form className="space-y-4">
           <div>
             <input
               type="text"
@@ -84,19 +98,19 @@ const Signup = () => {
             />
           </div>
           <Link
-            to="/"
-           className="w-full bg-blue-500 text-white p-3 rounded-lg font-medium text-sm hover:bg-blue-600 transition block text-center"
+            to="/login"
+            className="w-full bg-blue-500 text-white p-3 rounded-lg font-medium text-sm hover:bg-blue-600 transition block text-center"
+            onClick={(e) => {
+              if (!handleSignup()) e.preventDefault(); // Prevent navigation if validation fails
+            }}
           >
-           Signup
+            Signup
           </Link>
           <p className="text-center text-gray-600 text-sm">
             Already have an account?{' '}
-            <span
-              onClick={() => navigate('/login')}
-              className="text-blue-500 cursor-pointer hover:underline"
-            >
+            <Link to="/login" className="text-blue-500 hover:underline">
               Log in
-            </span>
+            </Link>
           </p>
         </form>
       </div>
