@@ -11,6 +11,7 @@ import axor from '../../Assets/axor.png'
 import { AiOutlineCloseCircle, AiOutlineSearch } from 'react-icons/ai';
 import { BsHouseDoor } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
+import { useNavigate } from 'react-router-dom';
 
 const Data = [
 
@@ -95,8 +96,8 @@ const Data = [
   }
 ]
 
-
 const Jobs = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('')
   const [companyFilter, setCompanyFilter] = useState('')
   const [locationFilter, setLocationFilter] = useState('')
@@ -216,7 +217,7 @@ const Jobs = () => {
       </div>
 
       {/* Jobs List */}
-      <div className="jobContainer flex gap-10 justify-center flex-wrap items-center py-10">
+      {/* <div className="jobContainer flex gap-10 justify-center flex-wrap items-center py-10">
         {filteredJobs.map(({ id, image, title, time, location, desc, company }) => {
           return (
             <div
@@ -239,15 +240,50 @@ const Jobs = () => {
                 <img src={image} alt="company logo" className="w-[10%]" />
                 <span className="text-[14px] py-[1rem] block group-hover:text-white">{company}</span>
               </div>
-              <button className="border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-black">
+              <button className="border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-black"
+              onClick={() => applyJob({ id, image, title, time, location, desc, company })}>
                 Apply Now
               </button>
             </div>
           )
+        })}
+      </div> */}
+      <div className="jobContainer flex gap-10 justify-center flex-wrap items-center py-10">
+        {filteredJobs.map((job) => {
+          return (
+            <div
+              key={job.id}
+              className="group group/item singleJob w-[250px] p-[20px] bg-white rounded-[10px] hover:bg-blueColor shadow-lg"
+            >
+              <span className="flex justify-between items-center gap-4">
+                <h1 className="text-[16px] font-semibold">{job.title}</h1>
+                <span className="flex items-center text-[#ccc] gap-1">
+                  <BiTimeFive />
+                  {job.time}
+                </span>
+              </span>
+              <h6 className="text-[#ccc]">{job.location}</h6>
+
+              <p className="text-[13px] text-[#959595] pt-[20px] border-t-[2px] mt-[20px]">
+                {job.desc}
+              </p>
+
+              <div className="company flex items-center gap-2">
+                <img src={job.image} alt="company logo" className="w-[10%]" />
+                <span className="text-[14px]">{job.company}</span>
+              </div>
+              <button
+                className="border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold"
+                onClick={() => navigate('/dashboard', { state: { job } })}
+              >
+                Apply Now
+              </button>
+            </div>
+          );
         })}
       </div>
     </div>
   )
 }
 
-export default Jobs
+export default Jobs;

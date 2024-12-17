@@ -11,6 +11,9 @@ const NavBar = () => {
       </div>
       <div className="menu flex gap-8">
         <Link to="/" className="menulist text-[#6f6f6f] hover:text-blueColor">Jobs</Link>
+        <Link to="/dashboard" className="menulist text-[#6f6f6f] hover:text-blueColor">
+          Dashboard
+        </Link>
         <Link to="/companies" className="menulist text-[#6f6f6f] hover:text-blueColor">Companies</Link>
         <Link to="/about" className="menulist text-[#6f6f6f] hover:text-blueColor">About</Link>
         <Link to="/contact" className="menulist text-[#6f6f6f] hover:text-blueColor">Contact</Link>

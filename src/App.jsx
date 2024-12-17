@@ -4,6 +4,8 @@ import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/FooterDiv/Footer';
 //import Search from './Components/SearchDiv/Search';
 import Jobs from './Components/JobDiv/Jobs';
+//import { JobProvider } from './Components/JobDiv/JobContext';
+import Dashboard from './Components/JobDiv/Dashboard';
 import Value from './Components/ValueDiv/Value';
 import Login from './Components/LoginSignup/Login';
 import Signup from './Components/LoginSignup/Signup';
@@ -22,6 +24,13 @@ const Layout = ({ children }) => {
 };
 
 const App = () => {
+  //const [appliedJobs, setAppliedJobs] = useState([]);
+  // const applyJob = (job) => {
+  //   if (!appliedJobs.some((appliedJob) => appliedJob.id === job.id)) {
+  //     setAppliedJobs((prev) => [...prev, job]);
+  //   }
+  // };
+  
   const [companies, setCompanies] = useState([
     { id: 1, name: 'Huawei', logo: 'path/to/logo' },
     { id: 2, name: 'Samsung', logo: 'path/to/logo' },
@@ -70,6 +79,14 @@ const App = () => {
           element={
             <Layout>
               <Jobs jobs={jobs} />
+            </Layout>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <Layout>
+              <Dashboard jobs={jobs}/>
             </Layout>
           }
         />
